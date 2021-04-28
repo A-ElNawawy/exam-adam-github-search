@@ -1,0 +1,35 @@
+.SearchBar {
+  width: 40vmin;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchBar input {
+  border-radius: 5px;
+  border-color: blue;
+  width: 40vmin;
+  height: 10vmin;
+  font-size: 3vmin;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.SearchBar button {
+  all: unset;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+  width: 40vmin;
+  height: 10vmin;
+  font-size: 3vmin;
+  transition: all 0.3s ease-in-out;
+}
+
+.SearchBar button:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}

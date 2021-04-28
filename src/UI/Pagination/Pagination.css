@@ -1,0 +1,24 @@
+.Pagination {
+  width: 40vmin;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.Pagination li {
+  all: unset;
+}
+.Pagination li a {
+  all: unset;
+  font-size: 4vmin;
+  color: blue;
+  padding: 20px;
+  cursor: pointer;
+}
+.Pagination li a:hover {
+  color: red;
+}
+.Pagination li a.notAllowed {
+  color: gray;
+  cursor: unset;
+}

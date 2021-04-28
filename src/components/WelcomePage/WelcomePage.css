@@ -1,0 +1,10 @@
+.WelcomePage {
+  padding: 20px 0 40px 0;
+  width: 100%;
+}
+
+.WelcomePage h2 {
+  width: 100%;
+  font-size: 4vmin;
+  margin-bottom: 4vh;
+}
