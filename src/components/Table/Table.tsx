@@ -19,16 +19,21 @@ const Table: React.FC<PropsInterface> = ({ Repos }) => {
     (repo: {
       id: number;
       full_name: string;
-      owner: { login: string };
+      html_url: string;
+      owner: { login: string; html_url: string };
       stargazers_count: number;
       forks_url: string;
     }) => (
       <tr key={repo.id}>
-        <td>{repo.full_name}</td>
-        <td>{repo.owner.login}</td>
+        <td>
+          <a href={repo.html_url}>{repo.full_name}</a>
+        </td>
+        <td>
+          <a href={repo.owner.html_url}>{repo.owner.login}</a>
+        </td>
         <td>{repo.stargazers_count}</td>
         <td>
-          <a href={repo.forks_url}>Forks</a>
+          <button>Add to Favorits</button>
         </td>
       </tr>
     )
@@ -46,8 +51,8 @@ const Table: React.FC<PropsInterface> = ({ Repos }) => {
           <tr>
             <th>Repo Name</th>
             <th>Owner</th>
-            <th>Stars</th>
-            <th>Fork</th>
+            <th>No. of Stars</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>{tableList}</tbody>

@@ -8,7 +8,7 @@ import Overlay from "./../UI/Overlay/Overlay";
 import Container from "./../UI/Container/Container";
 import Pagination from "./../UI/Pagination/Pagination";
 
-import { getData } from "./../functions/functions";
+import { getRepo } from "./../functions/functions";
 
 const App = () => {
   const [SearchField, setSearchField] = useState("");
@@ -16,23 +16,50 @@ const App = () => {
   const [Loading, setLoading] = useState(false);
   const [CurrentPage, setCurrentPage] = useState<number>(1);
 
-  useEffect(() => {
-    getData(SearchField, CurrentPage)
-      .then((response) => response.json())
-      .then((data) => {
-        setRepos(data.items);
-        setLoading(false);
-      });
-  }, [CurrentPage]);
+  //useEffect(() => {
+  //  //console.log(
+  //  //);
+  //  getRepo(SearchField, CurrentPage)
+  //    .then((response) => response.json())
+  //    .then((data) => {
+  //      console.log(data.items[0].forks_url);
+  //      fetch(data.items[0].forks_url)
+  //        .then((response) => response.json())
+  //        .then((res) => {
+  //          console.log(res);
+  //          setRepos(res);
+  //          setLoading(false);
+  //        });
+  //    });
+  //}, [CurrentPage]);
 
   const handleSearchButton = (repoName: string) => {
-    setLoading(true);
-    getData(repoName, CurrentPage)
-      .then((response) => response.json())
-      .then((data) => {
-        setRepos(data.items);
-        setLoading(false);
-      });
+    if (!SearchField.includes("/:")) {
+      alert("Please Enter a valid pattern");
+    } else {
+      setLoading(true);
+      let params = SearchField.split("/:").map((param) => param.trim());
+      //console.log(params);
+
+      getRepo(params[0], params[1])
+        .then((response) => response.json())
+        .then((data) => {
+          //console.log(data.items[0].forks_url);
+          if (data.items) {
+            fetch(data.items[0].forks_url)
+              .then((response) => response.json())
+              .then((res) => {
+                console.log(res);
+                setRepos(res);
+                setLoading(false);
+              });
+          } else {
+            alert("Sorry, There is no results");
+
+            setRepos(null);
+          }
+        });
+    }
   };
 
   const handlePrevButton = () => {
