@@ -1,44 +1,36 @@
 import "./Pagination.css";
 
 interface PropsInterface {
-  CurrentPage: number;
-  handlePrevButton: () => void;
-  handleNextButton: () => void;
+  RowsPerPage: number;
+  TotalRows: number;
+  paginate: (number: number) => void;
 }
 
 const Pagination: React.FC<PropsInterface> = ({
-  CurrentPage,
-  handlePrevButton,
-  handleNextButton,
+  RowsPerPage,
+  TotalRows,
+  paginate,
 }) => {
-  console.log(CurrentPage);
+  console.log(RowsPerPage, TotalRows);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(TotalRows / RowsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  console.log(pageNumbers);
+
+  let numList = pageNumbers.map((number) => (
+    <li key={number}>
+      <a onClick={() => paginate(number)} href="#void">
+        {number}
+      </a>
+    </li>
+  ));
 
   return (
-    <div>
-      <ul className="Pagination">
-        <li>
-          <a
-            href="#void"
-            className={CurrentPage === 1 ? "notAllowed" : ""}
-            onClick={() => {
-              handlePrevButton();
-            }}
-          >
-            Prev
-          </a>
-        </li>
-        <li>
-          <a
-            href="#void"
-            onClick={() => {
-              handleNextButton();
-            }}
-          >
-            Next
-          </a>
-        </li>
-      </ul>
-    </div>
+    <nav>
+      <ul className="Pagination">{numList}</ul>
+    </nav>
   );
 };
 

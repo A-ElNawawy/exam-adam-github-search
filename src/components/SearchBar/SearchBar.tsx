@@ -1,32 +1,32 @@
 import "./SearchBar.css";
 
-import { useContext } from "react";
-import SearchContext from "./../../context/SearchContext";
+import { useSelector, useDispatch } from "react-redux";
 
-const SearchBar = () => {
-  const searchContext = useContext(SearchContext);
+interface PropsInterface {
+  handleSearchButton: () => void;
+}
 
+const SearchBar: React.FC<PropsInterface> = ({ handleSearchButton }) => {
+  const dispatch = useDispatch();
+  const SearchField = useSelector((state: any) => state.SearchField);
+
+  const handleSearchFieldEdit = (SearchField: string) => {
+    dispatch({ type: "SearchField", SearchField: SearchField });
+  };
   return (
     <div className="SearchBar">
       <input
         type="search"
-        value={searchContext.SearchField}
+        value={SearchField}
         autoFocus
         onChange={(e) => {
-          searchContext.setSearchField(e.target.value);
+          handleSearchFieldEdit(e.target.value);
         }}
         onKeyPress={(e) => {
-          e.charCode === 13 &&
-            searchContext.handleSearchButton(searchContext.SearchField);
+          e.charCode === 13 && handleSearchButton();
         }}
       />
-      <button
-        onClick={() =>
-          searchContext.handleSearchButton(searchContext.SearchField)
-        }
-      >
-        Search
-      </button>
+      <button onClick={handleSearchButton}>Search</button>
     </div>
   );
 };

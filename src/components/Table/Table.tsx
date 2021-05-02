@@ -1,6 +1,7 @@
 import "./Table.css";
 
 import { AriaAttributes, DOMAttributes } from "react";
+//import { useSelector } from "react-redux";
 
 declare module "react" {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
@@ -11,11 +12,13 @@ declare module "react" {
 }
 
 interface PropsInterface {
-  Repos: [];
+  Rows: [];
 }
 
-const Table: React.FC<PropsInterface> = ({ Repos }) => {
-  let tableList = Repos?.map(
+const Table: React.FC<PropsInterface> = ({ Rows }) => {
+  //const Repos = useSelector((state: any) => state.Repos);
+
+  let tableList = /*Repos*/ Rows?.map(
     (repo: {
       id: number;
       full_name: string;
@@ -33,11 +36,12 @@ const Table: React.FC<PropsInterface> = ({ Repos }) => {
         </td>
         <td>{repo.stargazers_count}</td>
         <td>
-          <button>Add to Favorits</button>
+          <button>Add to Favorites</button>
         </td>
       </tr>
     )
   );
+  //console.log(/*Repos*/ Rows);
 
   return (
     <>

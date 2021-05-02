@@ -1,8 +1,8 @@
 .Pagination {
-  width: 40vmin;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: auto;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .Pagination li {
@@ -10,15 +10,13 @@
 }
 .Pagination li a {
   all: unset;
+  border: 1px solid blue;
+  padding: 5px 15px;
+  margin: 5px;
   font-size: 4vmin;
   color: blue;
-  padding: 20px;
   cursor: pointer;
 }
 .Pagination li a:hover {
   color: red;
-}
-.Pagination li a.notAllowed {
-  color: gray;
-  cursor: unset;
 }
