@@ -1,1 +1,1 @@
-  // trekhleb/:javascript-algorithms
+trekhleb/:javascript-algorithms
