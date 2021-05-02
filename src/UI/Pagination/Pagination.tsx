@@ -11,13 +11,10 @@ const Pagination: React.FC<PropsInterface> = ({
   TotalRows,
   paginate,
 }) => {
-  console.log(RowsPerPage, TotalRows);
-
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(TotalRows / RowsPerPage); i++) {
     pageNumbers.push(i);
   }
-  console.log(pageNumbers);
 
   let numList = pageNumbers.map((number) => (
     <li key={number}>

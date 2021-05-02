@@ -1,7 +1,6 @@
 import "./Table.css";
 
 import { AriaAttributes, DOMAttributes } from "react";
-//import { useSelector } from "react-redux";
 
 declare module "react" {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
@@ -36,12 +35,11 @@ const Table: React.FC<PropsInterface> = ({ Rows }) => {
         </td>
         <td>{repo.stargazers_count}</td>
         <td>
-          <button>Add to Favorites</button>
+          <button onClick={() => {}}>Add to Favorites</button>
         </td>
       </tr>
     )
   );
-  //console.log(/*Repos*/ Rows);
 
   return (
     <>

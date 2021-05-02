@@ -33,13 +33,13 @@ const App = () => {
             fetch(data.items[0].forks_url)
               .then((response) => response.json())
               .then((res) => {
-                console.log(res);
                 dispatch({ type: "Repos", Repos: res });
                 setLoading(false);
               });
           } else {
             alert("Sorry, There is no results");
             dispatch({ type: "Repos", Repos: null });
+            setLoading(false);
           }
         });
     }
